@@ -21,7 +21,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var port = process.env.PORT || 8080;
 
 //Database connection
 app.use(function(req, res, next){
@@ -67,7 +66,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-app.on('error',function(err){ console.error(err)})
 
 module.exports = app;
