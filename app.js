@@ -51,7 +51,6 @@ app.all('/*', function(req, res, next) {
 
 app.use('/', IndexRouter);
 app.use('/api/empreendimentos', EmpreendimentosRouter);
-//app.use('/api/empreendimentos/:id', EmpreendimentosSingleRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
