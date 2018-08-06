@@ -21,6 +21,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var port = process.env.PORT || 8080;
+
 //Database connection
 app.use(function(req, res, next){
 	res.locals.connection = mysql.createConnection({
