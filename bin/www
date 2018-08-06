@@ -31,7 +31,7 @@ server.on('listening', onListening);
 
 
 
-client.on('error',function(err){ console.error(err)})
+server.on('error',function(err){ console.error(err)})
 
 /**
  * Normalize a port into a number, string, or false.
