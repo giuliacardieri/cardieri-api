@@ -4,10 +4,10 @@ var mysql = require('mysql');
 
 var pool  = mysql.createPool({
   connectionLimit : 10,
-  host            : 'cardieri2018.mysql.uhserver.com',
-  user            : 'giulia93',
-  password        : 'INC.2018',
-  database        : 'cardieri2018'
+  host            : 'your-server',
+  user            : 'your-username',
+  password        : 'your-password',
+  database        : 'your-db'
 });
 
 /* GET empreendimentos listing. */
