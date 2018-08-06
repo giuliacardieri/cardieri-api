@@ -2,14 +2,22 @@ var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
 
-var transporter = nodemailer.createTransport('smtps://giulia.cardieri%40gmail.com:Pretty.Odd.srgoogle2017@smtp.gmail.com');
+var transporter = nodemailer.createTransport( {
+    host: "smtp.cardieri.com.br", // hostname
+    secureConnection: true, // use SSL
+    port: 587, // port for secure SMTP
+    auth: {
+        user: "teste@cardieri.com.br",
+        pass: "INC.2018"
+    }
+});
 
 /* GET email listing. */
 router.post('/', function(req, res) {
 	var email = req.body; 
 	var mailOptions = {
-	  from: 'giulia@cardieri.com.br',
-	  to: 'dinokikiteam@gmail.com',
+	  from: 'teste@cardieri.com.br',
+	  to: 'giulia.cardieri@gmail.com',
 	  subject: 'Contato - Cardieri INC',
 	  text: `Olá! O site da Cardieri INC recebeu uma nova mensagem de contato.\n Nome: ${ email.nome }\n E-mail: ${ email.email }\n Telefone: ${ email.telefone }\n Mensagem: ${ email.mensagem }`
 	};
