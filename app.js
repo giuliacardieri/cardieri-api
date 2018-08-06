@@ -1,5 +1,5 @@
-var createError = require('http-errors');
 var express = require('express');
+var createError = require('http-errors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -15,6 +15,12 @@ var mysql = require('mysql');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", true);
@@ -22,24 +28,18 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 //Database connection
-app.use(function(req, res, next){
-	res.locals.connection = mysql.createConnection({
-		host     : 'cardieri2018.mysql.uhserver.com',
-		user     : 'giulia93',
-		password : 'INC.2018',
-		database : 'cardieri2018'
-	});
-	res.locals.connection.connect();
-	next();
-});
+// app.use(function(req, res, next){
+// 	res.locals.connection = mysql.createConnection({
+// 		host     : 'cardieri2018.mysql.uhserver.com',
+// 		user     : 'giulia93',
+// 		password : 'INC.2018',
+// 		database : 'cardieri2018'
+// 	});
+// 	res.locals.connection.connect();
+// 	next();
+// });
 
 app.use('/', IndexRouter);
 app.use('/api/empreendimentos', EmpreendimentosRouter);
