@@ -32,10 +32,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Database connection
 app.use(function(req, res, next){
 	res.locals.connection = mysql.createConnection({
-		host     : 'cardieri2018.mysql.uhserver.com',
-		user     : 'giulia93',
-		password : 'INC.2018',
-		database : 'cardieri2018'
+		host     : 'your-host',
+		user     : 'your-user',
+		password : 'your-password',
+		database : 'your-db'
 	});
 	res.locals.connection.connect();
 	next();
