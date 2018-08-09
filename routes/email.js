@@ -14,7 +14,7 @@ var transporter = nodemailer.createTransport( {
 
 /* GET email listing. */
 router.post('/', function(req, res) {
-	var email = req.body; 
+	var email = req.body.body; 
 	var mailOptions = {
 	  from: 'teste@cardieri.com.br',
 	  to: 'giulia.cardieri@gmail.com',
