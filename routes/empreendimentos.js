@@ -3,10 +3,11 @@ var router = express.Router();
 var mysql = require('mysql');
 
 var pool  = mysql.createPool({
-	connectionLimit : 1000,
-	connectTimeout  : 60 * 60 * 1000,
-	aquireTimeout   : 60 * 60 * 1000,
-	timeout         : 60 * 60 * 1000,
+  multipleStatements: true,
+  connectionLimit : 1000,
+  connectTimeout  : 60 * 60 * 1000,
+  aquireTimeout   : 60 * 60 * 1000,
+  timeout         : 60 * 60 * 1000,
   host            : 'cardieri2018.mysql.uhserver.com',
   user            : 'giulia93',
   password        : 'INC.2018',
@@ -15,18 +16,21 @@ var pool  = mysql.createPool({
 
 /* GET empreendimentos listing. */
 router.get('/', function(req, res, next) {
-	pool.query('SELECT * from empreendimentos', function (error, results, fields) {
-		if (error) throw error;
-		res.json(JSON.stringify({"status": 200, "error": null, "response": results}));
-	});
+  pool.query('SELECT * from empreendimentos', function (error, results, fields) {
+    if (error) throw error;
+    res.json(JSON.stringify({"status": 200, "error": null, "response": results}));
+  });
 });
 
 /* GET empreendimento listing. */
 router.get('/:id', function(req, res, next) {
-	pool.query('SELECT * from empreendimentos WHERE id = ' + req.params.id, function (error, results, fields) {
-		if (error) throw error;
-		res.json(JSON.stringify({"status": 200, "error": null, "response": results}));
-	});
+
+  pool.query('SELECT * from empreendimentos WHERE id = ' + req.params.id 
+    + '; SELECT * from plantas WHERE empreendimentos_id = ' + req.params.id 
+    + '; SELECT * from fotos WHERE empreendimentos_id = ' + req.params.id, function (error, results, fields) {
+    if (error) throw error;
+    res.json(JSON.stringify({"status": 200, "error": null, "response": results}));
+  });
 });
 
 module.exports = router;
