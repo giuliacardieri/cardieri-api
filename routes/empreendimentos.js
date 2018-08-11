@@ -26,7 +26,6 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
 
   pool.query('SELECT * from empreendimentos WHERE id = ' + req.params.id 
-    + '; SELECT * from plantas WHERE empreendimentos_id = ' + req.params.id 
     + '; SELECT * from fotos WHERE empreendimentos_id = ' + req.params.id, function (error, results, fields) {
     if (error) throw error;
     res.json(JSON.stringify({"status": 200, "error": null, "response": results}));
