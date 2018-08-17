@@ -22,8 +22,9 @@ router.post('/', function(req, res) {
 	  text: `Olá! O site da Cardieri INC recebeu uma nova mensagem de contato.\n Nome: ${ email.nome }\n E-mail: ${ email.email }\n Telefone: ${ email.telefone }\n Mensagem: ${ email.mensagem }`
 	};
 
-	if (email.assunto)
-		mailOptions.text.concat('\n Assunto: ${ email.assunto }')
+	if (email.assunto) {
+		mailOptions.text = `Olá! O site da Cardieri INC recebeu uma nova mensagem de contato.\n Nome: ${ email.nome }\n E-mail: ${ email.email }\n Telefone: ${ email.telefone }\n Mensagem: ${ email.mensagem } \n Assunto: ${ email.assunto }`
+	}
 
 	transporter.sendMail(mailOptions, function(error, info){
 	  if (error) {
