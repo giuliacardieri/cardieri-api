@@ -14,13 +14,16 @@ var transporter = nodemailer.createTransport( {
 
 /* GET email listing. */
 router.post('/', function(req, res) {
-	var email = req.body.body; 
+	var email = req.body; 
 	var mailOptions = {
 	  from: 'teste@cardieri.com.br',
 	  to: 'giulia.cardieri@gmail.com',
 	  subject: 'Contato - Cardieri INC',
 	  text: `Olá! O site da Cardieri INC recebeu uma nova mensagem de contato.\n Nome: ${ email.nome }\n E-mail: ${ email.email }\n Telefone: ${ email.telefone }\n Mensagem: ${ email.mensagem }`
 	};
+
+	if (email.assunto)
+		mailOptions.text.concat('\n Assunto: ${ email.assunto }')
 
 	transporter.sendMail(mailOptions, function(error, info){
 	  if (error) {
