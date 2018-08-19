@@ -8,10 +8,10 @@ var pool  = mysql.createPool({
   connectTimeout  : 60 * 60 * 1000,
   aquireTimeout   : 60 * 60 * 1000,
   timeout         : 60 * 60 * 1000,
-  host            : 'cardieri2018.mysql.uhserver.com',
-  user            : 'giulia93',
-  password        : 'INC.2018',
-  database        : 'cardieri2018'
+  host            : 'host',
+  user            : 'user',
+  password        : 'password',
+  database        : 'db'
 });
 
 /* GET empreendimentos listing. */
