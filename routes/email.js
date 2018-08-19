@@ -7,7 +7,7 @@ var transporter = nodemailer.createTransport( {
     secureConnection: true, // use SSL
     port: 587, // port for secure SMTP
     auth: {
-        user: "teste@cardieri.com.br",
+        user: "social@cardieri.com.br",
         pass: "INC.2018"
     }
 });
